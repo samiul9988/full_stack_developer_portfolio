@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/shared/json-ld";
+import { Analytics } from "@/components/shared/analytics";
+import { WhatsAppButton } from "@/components/shared/whatsapp-button";
 import { siteConfig } from "@/lib/data";
 
 const inter = Inter({
@@ -108,11 +110,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full`}>
+      <head>
+        <Analytics />
+      </head>
       <body className="min-h-full flex flex-col antialiased bg-background text-text-primary">
         <JsonLd />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
