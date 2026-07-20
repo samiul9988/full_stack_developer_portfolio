@@ -1,0 +1,120 @@
+"use client";
+
+import { GitBranch, Globe, Mail, ArrowUp, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { navLinks, siteConfig } from "@/lib/data";
+
+export function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="relative border-t border-border/50 bg-background-secondary/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-sm font-bold">
+                JH
+              </span>
+              <span className="text-lg font-bold text-text-primary">
+                {siteConfig.name}
+              </span>
+            </div>
+            <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
+              Zend Certified PHP Engineer specializing in Laravel, Yii2, REST APIs,
+              and scalable backend architecture for eCommerce and enterprise applications.
+            </p>
+            <div className="flex items-center gap-3 mt-5">
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary/50 transition-all"
+                aria-label="GitHub"
+              >
+                <GitBranch size={18} />
+              </a>
+              <a
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary/50 transition-all"
+                aria-label="LinkedIn"
+              >
+                <Globe size={18} />
+              </a>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary/50 transition-all"
+                aria-label="Email"
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-4">
+              Quick Links
+            </h4>
+            <ul className="space-y-2.5">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-text-secondary hover:text-primary text-sm transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-4">
+              Get In Touch
+            </h4>
+            <ul className="space-y-3 text-sm text-text-secondary">
+              <li className="flex items-center gap-2">
+                <Mail size={14} className="text-primary flex-shrink-0" />
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-primary transition-colors">
+                  {siteConfig.email}
+                </a>
+              </li>
+              <li>
+                <span className="text-text-muted">{siteConfig.location}</span>
+              </li>
+              <li>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-success/10 border border-success/20 text-success text-xs font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+                  {siteConfig.availability}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-text-muted text-sm flex items-center gap-1">
+            Built with <Heart size={14} className="text-error fill-error" /> by{" "}
+            {siteConfig.name} &copy; {currentYear}
+          </p>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={scrollToTop}
+            className="rounded-full"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp size={18} />
+          </Button>
+        </div>
+      </div>
+    </footer>
+  );
+}
