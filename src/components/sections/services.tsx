@@ -7,7 +7,7 @@ import { services, iconMap } from "@/lib/data";
 
 export function Services() {
   return (
-    <section id="services" className="relative py-24 sm:py-32">
+    <section id="services" className="relative py-16 sm:py-20">
       <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading

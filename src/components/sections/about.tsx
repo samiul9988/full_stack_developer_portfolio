@@ -30,7 +30,7 @@ const pillars = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="relative py-16 sm:py-20">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function Certifications() {
   return (
-    <section id="certifications" className="relative py-24 sm:py-32">
+    <section id="certifications" className="relative py-16 sm:py-20">
       <div className="absolute top-1/3 right-1/3 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading

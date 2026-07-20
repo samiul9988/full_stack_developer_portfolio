@@ -29,7 +29,7 @@ export function Skills() {
       : skills.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
+    <section id="skills" className="relative py-16 sm:py-20">
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading

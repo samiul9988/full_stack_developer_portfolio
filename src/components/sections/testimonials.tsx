@@ -40,7 +40,7 @@ export function Testimonials() {
   const testimonial = testimonials[current];
 
   return (
-    <section id="testimonials" className="relative py-24 sm:py-32">
+    <section id="testimonials" className="relative py-16 sm:py-20">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/3 rounded-full blur-[120px]" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
