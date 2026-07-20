@@ -44,7 +44,7 @@ export const siteConfig = {
   email: "samiulkabir9988@gmail.com",
   phone: "+8801822215188",
   whatsapp: "+8801822215188",
-  linkedin: "https://linkedin.com/in/jubayerhossain",
+  linkedin: "https://www.linkedin.com/in/jubayer-hossain-936084172",
   github: "https://github.com/jubayerhosssain",
   calendly: "https://calendly.com/jubayerhossain",
   location: "Mirpur 12, Dhaka, Bangladesh",
