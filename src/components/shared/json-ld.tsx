@@ -9,7 +9,7 @@ export function JsonLd() {
     jobTitle: "Backend Developer",
     description: siteConfig.description,
     image: siteConfig.ogImage,
-    sameAs: ["https://www.linkedin.com/in/jubayer-hossain-936084172", siteConfig.github],
+    sameAs: ["https://www.linkedin.com/in/jubayer-hossain-936084172", "https://github.com/samiul9988"],
     knowsAbout: [
       "PHP",
       "Laravel",

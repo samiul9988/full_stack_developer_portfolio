@@ -45,7 +45,7 @@ export const siteConfig = {
   phone: "+8801822215188",
   whatsapp: "+8801822215188",
   linkedin: "https://www.linkedin.com/in/jubayer-hossain-936084172",
-  github: "https://github.com/jubayerhosssain",
+  github: "https://github.com/samiul9988",
   calendly: "https://calendly.com/jubayerhossain",
   location: "Mirpur 12, Dhaka, Bangladesh",
   yearsOfExperience: 4,
