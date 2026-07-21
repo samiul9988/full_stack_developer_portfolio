@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
   Mail,
   MessageSquare,
@@ -15,44 +12,26 @@ import {
   CheckCircle2,
   CalendarDays,
   ArrowUpRight,
+  AlertCircle,
 } from "lucide-react";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
+import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
 import { siteConfig } from "@/lib/data";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+const initialState: ContactFormState = { success: false };
 
 export function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  });
-
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
-
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+  useEffect(() => {
+    if (state.success) {
+      setShowSuccess(true);
+      const timer = setTimeout(() => setShowSuccess(false), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [state.success]);
 
   return (
     <section id="contact" className="relative py-16 sm:py-20">
@@ -67,7 +46,7 @@ export function Contact() {
         <div className="grid lg:grid-cols-3 gap-8">
           <ScrollReveal className="lg:col-span-2">
             <div className="glass rounded-2xl p-6 sm:p-8">
-              {isSubmitted ? (
+              {showSuccess ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -85,7 +64,14 @@ export function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <form action={formAction} className="space-y-5">
+                  {state.error && !state.fieldErrors && (
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-error/10 border border-error/20 text-error text-sm">
+                      <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+                      <span>{state.error}</span>
+                    </div>
+                  )}
+
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label
@@ -95,15 +81,15 @@ export function Contact() {
                         Your Name
                       </label>
                       <input
-                        {...register("name")}
+                        name="name"
                         id="name"
                         type="text"
                         placeholder="John Doe"
                         className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-sm"
                       />
-                      {errors.name && (
+                      {state.fieldErrors?.name && (
                         <p className="text-error text-xs mt-1.5">
-                          {errors.name.message}
+                          {state.fieldErrors.name}
                         </p>
                       )}
                     </div>
@@ -115,15 +101,15 @@ export function Contact() {
                         Email Address
                       </label>
                       <input
-                        {...register("email")}
+                        name="email"
                         id="email"
                         type="email"
                         placeholder="john@company.com"
                         className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-sm"
                       />
-                      {errors.email && (
+                      {state.fieldErrors?.email && (
                         <p className="text-error text-xs mt-1.5">
-                          {errors.email.message}
+                          {state.fieldErrors.email}
                         </p>
                       )}
                     </div>
@@ -137,15 +123,15 @@ export function Contact() {
                       Subject
                     </label>
                     <input
-                      {...register("subject")}
+                      name="subject"
                       id="subject"
                       type="text"
                       placeholder="Project Discussion"
                       className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-sm"
                     />
-                    {errors.subject && (
+                    {state.fieldErrors?.subject && (
                       <p className="text-error text-xs mt-1.5">
-                        {errors.subject.message}
+                        {state.fieldErrors.subject}
                       </p>
                     )}
                   </div>
@@ -158,25 +144,25 @@ export function Contact() {
                       Message
                     </label>
                     <textarea
-                      {...register("message")}
+                      name="message"
                       id="message"
                       rows={5}
                       placeholder="Tell me about your project, goals, and timeline..."
                       className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-sm resize-none"
                     />
-                    {errors.message && (
+                    {state.fieldErrors?.message && (
                       <p className="text-error text-xs mt-1.5">
-                        {errors.message.message}
+                        {state.fieldErrors.message}
                       </p>
                     )}
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isPending}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? (
+                    {isPending ? (
                       <>
                         <Loader2 size={18} className="animate-spin" />
                         Sending...

@@ -35,7 +35,7 @@ export function Skills() {
         <SectionHeading
           label="Technical Arsenal"
           title="Skills That Deliver Results"
-          description="A comprehensive toolkit built over 8+ years of hands-on engineering across diverse industries and tech stacks."
+          description="4+ years of hands-on engineering. One mission: building production-ready backend systems that scale."
         />
 
         <div className="flex flex-wrap justify-center gap-2 mb-12">

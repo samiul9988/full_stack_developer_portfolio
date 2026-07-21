@@ -19,7 +19,7 @@ export function Experience() {
         <SectionHeading
           label="Career"
           title="Professional Journey"
-          description="A track record of delivering impact across startups, agencies, and enterprise organizations."
+          description="Two companies. Dozens of features shipped. A consistent record of delivering backend systems on time."
         />
 
         <div className="relative">

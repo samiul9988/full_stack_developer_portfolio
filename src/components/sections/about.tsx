@@ -36,7 +36,7 @@ export function About() {
         <SectionHeading
           label="About Me"
           title="Building Scalable Backend Systems with Clean Architecture"
-          description="4+ years of hands-on backend development, turning complex business requirements into robust, maintainable systems that power eCommerce, marketplaces, and enterprise applications."
+          description="4+ years building eCommerce, marketplace, and SaaS backends. Zend Certified. Clean architecture. Every project ships on time."
         />
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">

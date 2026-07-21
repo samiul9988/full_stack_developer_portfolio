@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Briefcase, Users, Code2, ExternalLink } from "lucide-react";
+import { ArrowRight, Briefcase, Users, Code2, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedCounter } from "@/components/shared/animated-counter";
 import { siteConfig } from "@/lib/data";
@@ -27,13 +28,13 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16"
     >
       <div className="absolute inset-0 bg-grid" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse-glow" />
       <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-32 pb-16">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <motion.div
@@ -53,27 +54,20 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
             >
-              Backend
+              <span className="gradient-text">Zend Certified</span>
               <br />
-              <span className="gradient-text">Developer</span>
+              Laravel & PHP
+              <br />
+              <span className="text-text-primary">Backend Engineer</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-2"
+              className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-6"
             >
-              Zend Certified PHP Engineer
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-text-muted text-sm leading-relaxed max-w-xl mb-2"
-            >
-              Laravel &bull; Node.js &bull; TypeScript &bull; Docker &bull; React &bull; AI / LLM &bull; Microservices
+              I build production-ready eCommerce, marketplace &amp; SaaS backends that scale.
             </motion.p>
 
             <motion.p
@@ -82,47 +76,53 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-text-muted text-base leading-relaxed max-w-xl mb-8"
             >
-              {siteConfig.yearsOfExperience}+ years of experience building scalable
-              eCommerce, Marketplace, ERP, and CMS solutions with clean architecture
-              and high-performance backend systems.
+              {siteConfig.yearsOfExperience}+ years. 7 platforms. 15+ clients. Clean architecture, zero downtime deployments, and measurable performance gains &mdash; every project.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
             >
               <Button
                 variant="gradient"
-                size="xl"
+                size="lg"
+                className="sm:size-xl w-full sm:w-auto justify-center"
                 onClick={() =>
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Hire Me
-                <ArrowRight size={20} />
+                <CalendarDays size={18} />
+                Book a Free Consultation
               </Button>
               <Button
                 variant="outline"
-                size="xl"
+                size="lg"
+                className="sm:size-xl w-full sm:w-auto justify-center"
                 onClick={() =>
                   document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                View Projects
+                See My Work
+                <ArrowRight size={18} />
               </Button>
-              <Button variant="ghost" size="xl">
-                <Download size={20} />
-                Resume
-              </Button>
+              <a
+                href={siteConfig.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 h-12 sm:h-14 rounded-2xl px-8 sm:px-10 text-base sm:text-lg font-medium border border-accent/30 text-accent hover:bg-accent/10 transition-all w-full sm:w-auto"
+              >
+                <CalendarDays size={18} />
+                Schedule Call
+              </a>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex items-center gap-8 mt-12 pt-8 border-t border-border/30"
+              className="flex flex-wrap items-center gap-4 sm:gap-8 mt-12 pt-8 border-t border-border/30"
             >
               {[
                 { icon: Briefcase, value: siteConfig.yearsOfExperience, suffix: "+", label: "Years Experience" },
@@ -146,28 +146,35 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden lg:flex justify-center"
+            className="flex justify-center order-first lg:order-none"
           >
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/5 to-accent/20 border border-border/50 flex items-center justify-center overflow-hidden">
-                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-2xl bg-surface flex items-center justify-center relative">
-                  <div className="text-8xl font-bold gradient-text">JH</div>
-                  <div className="absolute bottom-6 left-6 right-6 glass rounded-xl p-4 text-center">
-                    <div className="text-sm font-semibold text-text-primary">MD Jubayer Hossain</div>
-                    <div className="text-xs text-text-muted mt-1">Zend Certified PHP Engineer</div>
-                  </div>
+            <div className="relative mt-6 lg:mt-0">
+              <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/5 to-accent/20 border border-border/50 flex items-center justify-center overflow-hidden">
+                <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-2xl bg-surface flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/images/avatar.jpg"
+                    alt="MD Jubayer Hossain - Zend Certified Laravel & PHP Engineer"
+                    width={320}
+                    height={320}
+                    className="w-full h-full object-contain"
+                    priority
+                  />
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-2xl border border-accent/30 flex items-center justify-center animate-float">
+              <div className="absolute -bottom-4 sm:-bottom-6 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-md rounded-xl px-4 sm:px-5 py-2.5 sm:py-3 border border-border/50 text-center whitespace-nowrap">
+                <div className="text-xs sm:text-sm font-semibold text-white">MD Jubayer Hossain</div>
+                <div className="text-[10px] sm:text-xs text-accent mt-0.5">Zend Certified PHP Engineer</div>
+              </div>
+              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-20 h-20 sm:w-24 sm:h-24 bg-accent/20 rounded-2xl border border-accent/30 flex items-center justify-center animate-float">
                 <div className="text-center">
-                  <div className="text-accent text-xl font-bold">ZEND</div>
-                  <div className="text-text-muted text-[10px]">Certified</div>
+                  <div className="text-accent text-lg sm:text-xl font-bold">ZEND</div>
+                  <div className="text-text-muted text-[9px] sm:text-[10px]">Certified</div>
                 </div>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-28 h-20 bg-success/10 rounded-2xl border border-success/20 flex items-center justify-center animate-float" style={{ animationDelay: "2s" }}>
+              <div className="absolute -bottom-20 sm:-bottom-24 -left-3 sm:-left-4 w-24 h-16 sm:w-28 sm:h-20 bg-success/10 rounded-2xl border border-success/20 flex items-center justify-center animate-float" style={{ animationDelay: "2s" }}>
                 <div className="text-center">
-                  <div className="text-success text-xl font-bold">{siteConfig.projectsCompleted}+</div>
-                  <div className="text-text-muted text-[10px]">Projects</div>
+                  <div className="text-success text-lg sm:text-xl font-bold">{siteConfig.projectsCompleted}+</div>
+                  <div className="text-text-muted text-[9px] sm:text-[10px]">Projects</div>
                 </div>
               </div>
             </div>

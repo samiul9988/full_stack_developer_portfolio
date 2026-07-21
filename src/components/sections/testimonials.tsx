@@ -46,7 +46,7 @@ export function Testimonials() {
         <SectionHeading
           label="Testimonials"
           title="What Clients Say"
-          description="Trusted by founders, CTOs, and engineering leaders worldwide."
+          description="Real feedback from clients and colleagues I have built production systems for."
         />
 
         <div className="relative">
